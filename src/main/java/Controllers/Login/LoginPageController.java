@@ -5,12 +5,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import model.LoginDTO;
 import scean.SceanManager;
+import service.LoginService;
+import service.impl.LoginServiceImpl;
 
 public class LoginPageController {
 
-    LoginController loginController = new LoginController();
+    LoginService service = new LoginServiceImpl();
 
     @FXML
     private Button btnLogin;
@@ -24,12 +25,8 @@ public class LoginPageController {
     @FXML
     void btnLoginOnAction(ActionEvent event) {
 
-        LoginDTO loginDTO = new LoginDTO();
 
-        loginDTO.setUserName(txtUserName.getText());
-        loginDTO.setPassword(txtPassword.getText());
-
-        if (loginController.CheckUserNameAndPassword(loginDTO)) {
+        if (service.checkLoginDetails(txtUserName.getText(), txtPassword.getText())) {
             SceanManager.switchPage("/view/Home/Home_Page.fxml");
         }else {
             SceanManager.switchPage("/view/Login/Login_error_page.fxml");

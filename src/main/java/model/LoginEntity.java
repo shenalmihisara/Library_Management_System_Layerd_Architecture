@@ -1,7 +1,13 @@
 package model;
 
-public class LoginDTO {
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "users")
+public class LoginEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String userName;
     private String password;
 
@@ -21,12 +27,12 @@ public class LoginDTO {
         this.userName = userName;
     }
 
-    public LoginDTO(String userName, String password) {
+    public LoginEntity(String userName, String password) {
         this.userName = userName;
         this.password = password;
     }
 
-    public LoginDTO() {
+    public LoginEntity() {
     }
 
     @Override
